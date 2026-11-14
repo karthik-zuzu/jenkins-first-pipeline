@@ -18,11 +18,14 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Publish') {
             steps {
-                echo 'Deploying website'
-                sh 'cp index.html /var/www/html/myapp/index.html'
+                echo 'Publishing website artifact'
+
+                archiveArtifacts artifacts: 'index.html',
+                                 fingerprint: true
             }
         }
     }
 }
+
